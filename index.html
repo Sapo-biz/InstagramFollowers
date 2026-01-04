@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstagramFollowers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Instagram Followers Checker</h1>
+            <p class="subtitle">Find out who isn't following you back</p>
+        </header>
+
+        <div class="input-section">
+            <div class="input-box">
+                <label for="following-input">
+                    <h2>Following List</h2>
+                    <p class="hint">Upload a .txt file or paste usernames (one per line)</p>
+                </label>
+                <div class="input-wrapper">
+                    <textarea 
+                        id="following-input" 
+                        placeholder="Paste usernames here, one per line..."
+                        rows="8"
+                    ></textarea>
+                    <input type="file" id="following-file" accept=".txt" class="file-input">
+                    <button class="upload-btn" onclick="document.getElementById('following-file').click()">
+                        📁 Upload .txt File
+                    </button>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <label for="followers-input">
+                    <h2>Followers List</h2>
+                    <p class="hint">Upload a .txt file or paste usernames (one per line)</p>
+                </label>
+                <div class="input-wrapper">
+                    <textarea 
+                        id="followers-input" 
+                        placeholder="Paste usernames here, one per line..."
+                        rows="8"
+                    ></textarea>
+                    <input type="file" id="followers-file" accept=".txt" class="file-input">
+                    <button class="upload-btn" onclick="document.getElementById('followers-file').click()">
+                        📁 Upload .txt File
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <button id="submit-btn" class="submit-btn">
+            <span>Find Non-Followers</span>
+        </button>
+
+        <div id="results-section" class="results-section hidden">
+            <h2>People Not Following You Back</h2>
+            <div class="results-header">
+                <span id="results-count" class="results-count"></span>
+                <button id="copy-btn" class="copy-btn">📋 Copy All</button>
+            </div>
+            <div id="results-list" class="results-list"></div>
+        </div>
+
+        <div id="error-message" class="error-message hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
