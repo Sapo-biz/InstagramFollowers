@@ -68,10 +68,13 @@
 
         <footer class="footer">
             <p class="footer-text">
-                <strong>Note:</strong> Timestamps are automatically filtered out from your input. 
-                The tool recognizes timestamps by detecting AM/PM indicators, month names (Jan, January, etc.), 
-                years (2020-2030), and time patterns (e.g., "1:23 PM"). This ensures accurate username extraction 
-                when pasting directly from Instagram's HTML export files.
+                <strong>Note:</strong> The tool automatically filters timestamps and Instagram URLs from your input. 
+                <strong>Timestamps</strong> are detected by AM/PM indicators, month names (Jan, January, etc.), 
+                years (2020-2030), and time patterns (e.g., "1:23 PM"). 
+                <strong>Instagram URLs</strong> are filtered out and usernames are extracted from URLs if present. 
+                The tool recognizes URLs with or without protocols (http/https), with or without www, 
+                mobile versions (m.instagram.com), and handles trailing slashes and query parameters. 
+                This ensures accurate username extraction when pasting directly from Instagram's HTML export files.
             </p>
         </footer>
     </div>
