@@ -292,3 +292,20 @@ textarea:focus {
     background: #5568d3;
 }
 
+.footer {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #e9ecef;
+}
+
+.footer-text {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.footer-text strong {
+    color: #667eea;
+}
+

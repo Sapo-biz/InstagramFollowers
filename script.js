@@ -91,12 +91,57 @@ function processLists() {
     displayResults(notFollowingBack);
 }
 
+function isTimestamp(line) {
+    const trimmedLine = line.trim();
+    
+    // Check for AM/PM indicators (case insensitive)
+    const hasAmPm = /\b(AM|PM|am|pm)\b/i.test(trimmedLine);
+    
+    // Check for month names (abbreviated and full)
+    const monthPattern = /\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)\b/i;
+    const hasMonth = monthPattern.test(trimmedLine);
+    
+    // Check for 4-digit year (2020-2030 range for Instagram timestamps)
+    const hasYear = /\b(20[2-3][0-9])\b/.test(trimmedLine);
+    
+    // Check for time pattern (e.g., "1:23", "11:45", "12:30")
+    const timePattern = /\b\d{1,2}:\d{2}\b/;
+    const hasTime = timePattern.test(trimmedLine);
+    
+    // Check for common date patterns with commas
+    const datePatternWithComma = /\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2},\s+\d{4}/i;
+    const hasDatePattern = datePatternWithComma.test(trimmedLine);
+    
+    // If it has AM/PM AND (month OR year), it's likely a timestamp
+    if (hasAmPm && (hasMonth || hasYear)) {
+        return true;
+    }
+    
+    // If it has month, year, and time pattern, it's likely a timestamp
+    if (hasMonth && hasYear && hasTime) {
+        return true;
+    }
+    
+    // If it matches the full date pattern with comma, it's likely a timestamp
+    if (hasDatePattern) {
+        return true;
+    }
+    
+    // If it has AM/PM and time pattern, likely a timestamp
+    if (hasAmPm && hasTime) {
+        return true;
+    }
+    
+    return false;
+}
+
 function parseList(input) {
     // Split by newlines and filter out empty lines
     return input
         .split('\n')
         .map(line => line.trim())
         .filter(line => line.length > 0)
+        .filter(line => !isTimestamp(line)) // Filter out timestamps
         .map(line => {
             // Remove common Instagram list formatting
             // Handles cases like "username", "username (name)", etc.
