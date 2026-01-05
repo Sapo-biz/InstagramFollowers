@@ -192,6 +192,7 @@ function parseList(input) {
         .map(line => line.trim())
         .filter(line => line.length > 0)
         .filter(line => !isTimestamp(line)) // Filter out timestamps
+        .filter(line => !line.startsWith('https://www.instagram.com/_u/')) // Filter out Instagram _u URLs
         .map(line => {
             // Check if line contains an Instagram URL - extract username if so
             const usernameFromUrl = extractUsernameFromInstagramUrl(line);
